@@ -1,0 +1,55 @@
+# Default configuration for Old Money world model
+
+world_model:
+  state_dim: 256
+  latent_dim: 64
+  hidden_dim: 256
+  num_diffusion_steps: 1000
+  device: "cuda"  # or "cpu"
+
+subworlds:
+  finance:
+    num_assets: 10
+    latent_dim: 32
+    mean_reversion_rate: 0.1
+    volatility_base: 0.02
+    
+  social:
+    num_entities: 20
+    latent_dim: 32
+    reputation_decay: 0.99
+    trust_update_rate: 0.05
+    info_spread_rate: 0.3
+    
+  intervention:
+    num_resources: 5
+    num_capacities: 5
+    latent_dim: 32
+    resource_regeneration: 0.01
+    capacity_decay: 0.99
+
+agent:
+  name: "old_money"
+  action_dim: 32
+  hidden_dim: 256
+  num_diffusion_steps: 50
+  horizon: 20
+  prior_type: "stability"  # or "adaptive"
+  
+training:
+  batch_size: 32
+  learning_rate: 0.0001
+  num_epochs: 100
+  gradient_clip: 1.0
+  
+simulation:
+  num_timesteps: 500
+  intervention_frequency: 10
+  enforce_budget: true
+  
+visualization:
+  style: "seaborn-v0_8-darkgrid"
+  figsize: [15, 8]
+  save_format: "png"
+  dpi: 300
+
